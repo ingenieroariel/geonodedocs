@@ -1,0 +1,61 @@
+.. GeoNode documentation master file, created by
+   sphinx-quickstart on Mon Oct  3 16:20:38 2011.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+
+========================
+GeoNode's documentation!
+========================
+
+First Steps
+===========
+
+For a GeoNode test drive you can browse `the geonode demo site`_.
+
+ * :doc:`Overview <intro/overview>`
+ * :doc:`Quick installation <intro/install>`
+
+.. _the geonode demo site: http://demo.geonode.org
+
+User Tutorials
+==============
+
+ * :doc:`Registering a new account <users/registration>`
+ * :doc:`Uploading data <users/upload>`
+ * :doc:`Styling layers <users/styling>`
+ * :doc:`Creating maps <users/maps>`
+ * :doc:`Sharing and printing <users/sharing>`
+
+Administrator Guides
+====================
+
+ * :doc:`Customizing look and feel of geonode <deploy/customizing>`
+ * :doc:`Debugging problems <deploy/debugging>`
+ * :doc:`Enabling Additional data formats <deploy/formats>`
+
+Developer Guides
+================
+
+ * :doc:`Configuring GeoNode in development mode <developers/setup>`
+ * :doc:`Architecture Overview <developers/architecture>`
+ * :doc:`Extending GeoNode <developers/extending>`
+ * :doc:`Contributing to GeoNode <developers/contributing>`
+
+Getting help
+============
+
+Having trouble? We'd like to help!
+
+ * Search for information in the `archives of the geonode mailing list`_, or
+  `post a question`_.
+
+ * Ask a question in the `#geonode IRC channel`_ using
+   `Freenode's web based client`_
+
+ * Report bugs with GeoNode in our `ticket tracker`_.
+
+.. _archives of the geonode mailing list: http://librelist.com/browser/geonode/
+.. _post a question: mailto:geonode@librelist.com
+.. _#geonode IRC channel: irc://irc.freenode.net/geonode
+.. _Freenode's web based client: http://webchat.freenode.net
+.. _ticket tracker: http://dev.geonode.org/trac
