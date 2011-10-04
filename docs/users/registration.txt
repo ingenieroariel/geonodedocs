@@ -1,0 +1,44 @@
+====================================
+Registering a new account in GeoNode
+====================================
+
+This module covers the tasks of registering a new account, activating it and using it to log in as a registered user.
+
+.. rubric:: Tasks
+
+#. Navigate to GeoNode's homepage, you will find the following in the top right corner:
+
+   .. image:: login_register.png
+
+#. Click on :menuselection:`Register` and oyu will be taken to a page like the following:
+
+   .. image:: register_form.png
+
+   Once you have filled in the details, you should see something like:
+
+   .. image:: activation_sent.png
+
+#. Open your email and look for a message like the following:
+
+   .. impage:: activation_email.png
+
+   Click on the activation link and the registration will be completed, you will also be logged into GeoNode. Congratulations!
+
+Logging in GeoNode
+==================
+
+Next time you come back to the site, you can follow these instructions to log in:
+
+.. rubric:: Tasks
+
+#. Click on login:
+
+   .. image:: login_register.png
+
+#. Fill out the login form:
+
+   .. image:: login_form.png
+
+#. Verify you are logged in by looking for your username in the top bar:
+
+   .. image:: logged_in.png
