@@ -18,6 +18,9 @@ First Steps
 User Tutorials
 ==============
 
+The end user documentation is formatted in form of tutorials, this material has mostly been developed for Workshops during FOSS4g and similar conferences.
+
+ * :doc:`Tutorials overview <users/index>`
  * :doc:`Registering a new account <users/registration>`
  * :doc:`Uploading data <users/upload>`
  * :doc:`Styling layers <users/styling>`
