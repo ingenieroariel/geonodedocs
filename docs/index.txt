@@ -21,11 +21,11 @@ User Tutorials
 The end user documentation is formatted in form of tutorials, this material has mostly been developed for Workshops during FOSS4g and similar conferences.
 
  * :doc:`Tutorials overview <users/index>`
- * :doc:`Registering a new account <users/registration>`
+ * :doc:`Registering a new account <users/register>`
  * :doc:`Uploading data <users/upload>`
- * :doc:`Styling layers <users/styling>`
- * :doc:`Creating maps <users/maps>`
- * :doc:`Sharing and printing <users/sharing>`
+ * :doc:`Creating maps <users/create>`
+ * :doc:`Exploring maps <users/explore>`
+ * :doc:`Sharing and printing <users/share>`
 
 Administrator Guides
 ====================
