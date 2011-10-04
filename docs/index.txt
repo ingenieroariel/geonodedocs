@@ -10,10 +10,8 @@ GeoNode's documentation!
 First Steps
 ===========
 
-For a GeoNode test drive you can browse `the geonode demo site`_.
-
  * :doc:`Overview <intro/overview>`
- * :doc:`Quick installation <intro/install>`
+ * :doc:`Installation <intro/install>`
 
 .. _the geonode demo site: http://demo.geonode.org
 
