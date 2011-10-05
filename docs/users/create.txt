@@ -3,22 +3,6 @@ Creating Your Own Map
 =====================
 
 
-Registering
-===========
-
-To register click *Sign In* on the front page, then click *Register*.  Fill out your username, email address, password.  You will then receive an email with a validation link that you must click to be registered.  Now you have an account and a profile and you can log in on the front page.
-
-.. note:: unregistered users can view all public content on the system and can make temporary changes to Maps created by others. Registered users can create their own Maps, upload materials, change symbolization, and save changes. In addition registered users can control access to layers they own and can access any private content that has been made accessible to them by others.  
-
-
-Filling in your profile
-=======================
-
-Profiles allow people to find out about other users of the system. A user’s profile name is associated with any layer or map they create. Once you are logged in you can go into your profile and add information about yourself. As you add materials to GeoNode, those materials will be listed here.
-
-.. note:: the user profile contains at a minimum the user’s name and email address.  Other optional items include organization, position, phone, fax, address, city, state, zip, country.  
-
-
 Creating a map
 ==============
 

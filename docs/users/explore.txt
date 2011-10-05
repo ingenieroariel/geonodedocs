@@ -1,12 +1,6 @@
 ============
 Viewing Maps
 ============
-GeoNode supports two basic uses of maps:
-
-#. Viewing (and if you are allowed, editing of) maps others have created
-#. Creating your own maps
-
-We will start with viewing maps others have created
 
 
 Finding a map to view
