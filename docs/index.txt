@@ -10,6 +10,8 @@ GeoNode's documentation!
 First Steps
 ===========
 
+The following documents give an overview to GeoNode, the overview document is targeted at non-technical audiences and the quick installation guide at people who just want to get it installed and will come back later to the complete documentation.
+
  * :doc:`Overview <intro/overview>`
  * :doc:`Installation <intro/install>`
 
@@ -17,6 +19,8 @@ First Steps
 
 User Tutorials
 ==============
+
+Users are not required to have experience with GIS systems but most power GeoNode users have existings knowledge of tools like ESRI's ArcGIS or qGIS.
 
 The end user documentation is formatted in form of tutorials, this material has mostly been developed for Workshops during FOSS4g and similar conferences.
 
@@ -27,16 +31,18 @@ The end user documentation is formatted in form of tutorials, this material has 
  * :doc:`Exploring maps <users/explore>`
  * :doc:`Sharing and printing <users/share>`
 
-Administrator Guides
-====================
+Administrator Guide
+===================
+
+Administrators are expected to have some experience with Linux systems but they are not required to be software developers.
 
  * :doc:`Complete installation guide <deploy/install>`
  * :doc:`Post installation instructions <deploy/production>`
  * :doc:`Customizing look and feel of geonode <deploy/customizing>`
  * :doc:`Debugging problems <deploy/debugging>`
 
-Developer Guides
-================
+Developer Guide
+===============
 
  * :doc:`Configuring GeoNode in development mode <developers/setup>`
  * :doc:`Architecture Overview <developers/architecture>`
