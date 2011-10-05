@@ -27,12 +27,12 @@ The easiest way to get the .deb is to install it using APT, the standard install
 
 1) Set up the GeoNode PPA repository (you only need to do this once; the repository will still be available for upgrades later)::
 
-   $ sudo add-apt-repository ppa:geonode/release
+    sudo add-apt-repository ppa:geonode/release
 
 2) Install the package. This step will also automatically download any needed dependencies::
 
-   $ sudo apt-get update
-   $ sudo apt-get install geonode
+    sudo apt-get update
+    sudo apt-get install geonode
 
 Once the package is installed, please consult the :doc:`/deploy/production` to learn how to create the admin user and tweak the settings to get more performance.
 
