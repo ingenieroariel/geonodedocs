@@ -1,7 +1,5 @@
 .. GeoNode documentation master file, created by
    sphinx-quickstart on Mon Oct  3 16:20:38 2011.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
 ========================
 GeoNode's documentation!
@@ -67,3 +65,14 @@ Having trouble? We'd like to help!
 .. _#geonode IRC channel: irc://irc.freenode.net/geonode
 .. _Freenode's web based client: http://webchat.freenode.net
 .. _ticket tracker: http://dev.geonode.org/trac
+
+.. toctree::
+    :hidden:
+    :maxdepth: 3
+
+    intro/overview
+    intro/install
+    users/register
+    users/upload
+    deploy/install
+
