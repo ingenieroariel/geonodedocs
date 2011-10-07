@@ -1,0 +1,403 @@
+
+GeoNode Django Apps
+===================
+
+The user interface of a GeoNode site is built on top of the Django web
+framework.  GeoNode includes a few "apps" (reusable Django modules) to support
+development of those user interfaces.  While these apps have reasonable default
+configurations, for customized GeoNode sites you will probably want to adjust
+these apps for your specific needs.
+
+.. toctree::
+   :maxdepth: 2
+
+   django-apps/core
+   django-apps/maps
+   django-apps/proxy
+
+.. comment:
+
+    geonode.core
+      Provide site navigation support and other miscellaneous tasks
+
+    geonode.maps
+      manage layers, maps, styles
+
+    geonode.proxy
+      support JavaScript applications accessing GeoServer/GeoNetwork
+
+``geonode.core`` - Miscellaneous site utilities
+===============================================
+
+This Django app provides some basic website features in an extensible fashion.
+For example, many sites should be able to add tabs to the site navigation bar
+without having to modify templates by taking advantage of the navigation
+features provided by this module.
+
+``settings.py`` Entries
+-----------------------
+
+MEDIA_LOCATIONS
+  GeoNode uses a lot of JavaScript and CSS includes due to the distribution
+  restrictions imposed by ExtJS.  The MEDIA_LOCATIONS settings file should be a
+  Python dict providing mappings from abstracted library prefixes to actual
+  media URLs, suitable for use in the site.  To see the prefix names used in
+  the default templates, an example, consult the settings.py for the example
+  ``geonode`` site included in the source tree.
+
+Template Tags
+-------------
+
+geonode_media <media_name>
+  Accesses entries in MEDIA_LOCATIONS without requiring the view to explicitly
+  add it to the template context.  Example usage::
+
+  {% include geonode_media %}
+  {% geonode_media "ext_base" %}
+
+``geonode.maps`` - Map creation and geospatial data management
+==============================================================
+
+This Django app provides some support for managing and manipulating geospatial
+datasets.  In particular, it provides tools for editing, viewing, and searching
+metadata for data layers, and for editing, viewing, and searching maps that
+aggregate data layers to display data about a particular topic.
+
+Models
+------
+
+The maps app provides two main model types:
+
+* Layer - A data layer managed by the GeoNode
+
+* Map - A collection of data layers composed in a particular order to form a map
+
+Additionally, there is a MapLayer model that maintains some map-specific
+information related to a layer, such as the z-indexing order.
+
+Views
+-----
+
+The maps app provides views for:
+
+* Creating, viewing, browsing, editing, and deleting Maps
+* Creating, viewing, browsing, editing, and deleting Layers and their metadata
+
+These operations require the use of GeoServer and GeoNetwork to manage map
+rendering and metadata indexing, as well as GeoExt to provide interactive
+editing and previewing of maps and data layers.
+
+There are also some url mappings in the geonode.maps.urls module for easy
+inclusion in GeoNode sites.
+
+``settings.py`` Entries
+-----------------------
+
+GEOSERVER_CREDENTIALS 
+  A 2-tuple with the username and password for a user with privileges to manage
+  data in the GeoServer coupled to this GeoNode.
+
+GEOSERVER_BASE_URL
+  A base URL from which GeoNode can construct GeoServer service URLs.  This is
+  the servlet context URL for the servlet container, or you can determine it by
+  visiting the GeoServer administration app's home page without the /web/ at
+  the end.  If your GeoServer administration app is at
+  http://example.com/geoserver/web/ , your GEOSERVER_BASE_URL is
+  http://example.com/ .
+
+GEONETWORK_CREDENTIALS
+  Similar to GEOSERVER_CREDENTIALS, but for GeoNetwork.  The user must have
+  permissions to create and modify metadata records in GeoNetwork.
+
+GEONETWORK_BASE_URL
+  Similar to GEOSERVER_BASE_URL, but for GeoNetwork.  Again, this is the
+  servlet context URL, or can be determined by stripping the last path
+  component off the url for the GeoNetwork homepage.
+
+SITEURL
+  A base URL for use in creating absolute links to Django views.
+
+DEFAULT_MAP_BASE_LAYER
+  The name of the background layer to include in newly created maps.
+ 
+DEFAULT_MAP_CENTER
+  A 2-tuple with the latitude/longitude coordinates of the center-point to use
+  in newly created maps.
+ 
+DEFAULT_MAP_ZOOM
+  The zoom-level to use in newly created maps.  This works like the OpenLayers
+  zom level setting; 0 is at the world extent and each additional level cuts
+  the viewport in half in each direction.
+  
+GOOGLE_API_KEY
+  A Google Maps v2 API key to use when a Google Maps background layer is used.
+
+
+``django-admin.py`` Commands
+----------------------------
+
+updatelayers
+  Scan GeoServer for data that hasn't been added to the GeoNode yet, and ensure
+  that each layer in the Django database is indexed in GeoNetwork
+
+``geonode.proxy`` - Assist JavaScript applications in accessing remote servers
+==============================================================================
+
+This Django app provides some HTTP proxies for accessing data from remote
+servers, to overcome restrictions imposed by the same-origin policy used by
+browsers.  This helps the GeoExt applications in a GeoNode site to access various XML documents from OGC-compliant data services.
+
+Views
+-----
+
+geonode.proxy.views.proxy
+  This view forwards requests without authentication to a URL provided in the
+  request, similar to the proxy.cgi script provided by the OpenLayers project.
+
+geonode.proxy.views.geoserver
+  This view proxies requests to GeoServer.  Instead of a URL-encoded URL
+  parameter, the path component of the request is expected to be a path
+  component for GeoServer.  Requests to this URL require valid authentication
+  against the Django site, and will use the GEOSERVER_CREDENTIALS and
+  GEOSERVER_BASE_URL settings as defined in the maps application.
+
+
+
+GeoNode and GeoNetwork
+======================
+
+customizing the schema used in GeoNetwork
+
+  * adapt Layer metadata in Django, analogous to Django's usual User models
+
+JavaScript in GeoNode
+=====================
+
+GeoNode provides a number of facilities for interactivity in the web browser built on top of several high-quality JavaScript frameworks:
+
+* `ExtJS <http://extjs.com/>`_ for component-based UI construction and data
+  access
+* `OpenLayers <http://openlayers.org/>`_ for interactive mapping and other
+  geospatial operations
+* `GeoExt <http://geoext.org/>`_ for integrating ExtJS with OpenLayers
+* `GXP <http://projects.opengeo.org/gxp>`_ for providing some higher-level
+  application building facilities on top of GeoExt, as well as improving
+  integration with GeoServer.
+* and a GeoNode-specific framework to handle some pages and services that are
+  unique to GeoNode.
+
+The following concepts are particularly important for developing on top of the
+GeoNode's JavaScript framework.
+
+* Components - Ext components handle most interactive functionality in
+  "regular" web pages.  For example, the scrollable/sortable/filterable table
+  on the default Search page is a Grid component.  While GeoNode does use some
+  custom components, familiarity with the idea of Components used by ExtJS is
+  applicable in GeoNode development.
+
+* Viewers - Viewers display interactive maps in web pages, optionally decorated
+  with Ext controls for toolbars, layer selection, etc.  Viewers in GeoNode use
+  the GeoExplorer base class, which builds on top of GXP's Viewer to provide
+  some common functionality such as respecting site-wide settings for
+  background layers. Viewers can be used as components embedded in pages, or
+  they can be full-page JavaScript applications.
+
+* Controls - Controls are tools for use in OpenLayers maps (such as a freehand
+  control for drawing new geometries onto a map, or an identify control for
+  getting information about individual features on a map.)  GeoExt provides
+  tools for using these controls as ExtJS "Actions" - operations that can be
+  invoked as buttons or menu options or associated with other events.
+
+GeoNode and GeoServer
+=====================
+
+GeoNode uses GeoServer to convert geographic data between various file formats,
+as well as render styled map tiles.  While standard GeoServer components,
+including its OGC-compliant web services and REST configuration API, provide
+the bulk of the GeoServer functionality used in a GeoNode site, there are some
+extensions to help GeoServer and the Django application interoperate more
+better.
+
+Geoprocessing with the GeoServer Process Extension
+--------------------------------------------------
+
+The Process extension to GeoServer helps to define custom geoprocessing
+operations against data managed by GeoServer.  The operations are exposed via a GeoServer RESTlet endpoint.
+
+Some processes are included with the Process extension.  Defining your own
+processes is possible too, but first let's look at how to use the processes
+that are already present.
+
+There are two 'modes' of accessing these processes: *interactive* and *batch*.
+The *interactive* mode is appropriate for fast-running processes and returns
+the result of the operation as the HTTP response to the request that launches
+the process.  The *batch* mode starts a thread on the server and supports
+polling to find out information about progress until the process is completed.
+
+Interactive Mode Processing
+...........................
+
+To use interactive-mode processing: 
+
+  * send an HTTP POST request with the process parameters to
+    /geoserver/rest/process/{process}/ .  The parameters must be formatted as a
+    JSON document.
+
+  * The result of the process will be returned, or an error will be reported
+    via the HTTP status code (500 for a general error, 400 for a badly
+    formatted request, etc.)  While the format of this response varies with the
+    process, JSON should be preferred for structured, machine-accessible
+    responses.
+
+Batch Mode Processing
+.....................
+
+To use batch-mode processing:
+
+  * send an HTTP POST with the process parameters to
+    /geoserver/rest/process/{process}/launch .  The parameters must be
+    formatted as a JSON document as described in the section on interactive
+    mode.  The reponse will contain a document describing the process's
+    progress, including an {id} string that identifies the process for future
+    reference.
+
+  * The process will initially be in a queue.  You can check on its progress by
+    sending an HTTP GET request to /geoserver/rest/processes/{id}/status .
+    When the status is DONE, you can send an HTTP GET request to
+    /geoserver/rest/processes/{id}/result.
+
+  * If you find a reason to cancel (for example, the user closes the JS widget
+    that launched the process request), you can cancel by sending a DELETE
+    request to /geoserver/rest/processes/{id} .  This will free up resources
+    sooner, but in either case GeoServer will automatically delete cached
+    process results after a set period, so you should ensure that you present
+    the results to the user in a prompt fashion via some means or other.
+
+Custom Processes
+................
+
+To create a custom process:
+
+#. Write a Java class that extends the Process interface.  It can use GeoTools,
+   and has access to the GeoServer catalog.  Let's call it
+   ``com.example.custom.Process``.  Aditionally, subclass ``ProcessRestlet`` to
+   create a Restlet that invokes your Process.
+
+#. Include a Spring context XML file called ``applicationContext.xml`` that
+   defines a bean using your process class, and a restlet mapping that attaches
+   your process to a specific URL pattern.  An example would be:
+
+   .. code-block:: xml
+
+       <beans>
+         <bean class="com.example.custom.ProcessRestlet" id="exampleRestlet"/>
+         <bean class="org.geoserver.rest.RESTMapping" id="exampleMapping">
+           <property name="routes">
+             <map>
+               <entry>
+                 <key><value>/process/example</value></key>
+                 <value>exampleRestlet</value>
+               </entry>
+             </map>
+         </bean>
+       </beans>
+
+#. Make sure that the JAR containing your process is on the Java classpath when
+   your application is running by including it in the ``WEB-INF/lib`` directory 
+   of your GeoServer WAR file.
+
+Authentication/Authorization
+----------------------------
+
+.. warning:: 
+
+    This section describes features which have not yet been implemented.
+
+GeoNode also provides an extension to GeoServer to have it respect GeoNode's
+user database and permissions instead of its own independent system.  This
+extension allows GeoServer to authenticate users by HTTP Basic auth (good for
+general desktop GIS applications) or Django session cookies (good for users
+accessing GeoServer from the Django site.)  The basic strategy is for GeoServer
+to forward either type of credential to a Django web service which provides
+GeoServer with up-to-date information about the user's permissions.  Consider a
+request coming into some GeoServer service::
+
+    GET /geoserver/ows?request=GetFeature&typename=top_secret:data
+
+GeoServer will first inspect the request to identify whether it contains an
+``Authorization:`` header or a cookie from the Django session system.
+GeoServer then issues a request to Django::
+
+    GET /user/permissions
+   
+Including the credentials it found on the initial request.  If the
+``Authorization:`` header contains the username and password for a valid user,
+or the session cookie corresponds to an active session for a logged-in user,
+then Django responds with a document describing the permissions associated with
+that user.  If the ``Authorization:`` header or cookie is found and determined
+to be invalid, then Django sets a 401 status on the HTTP response.  Otherwise,
+Django assumes an anonymous user and returns a document describing the
+permissions associated with anonymous users.  The permissions document is a
+JSON object that looks like this::
+
+    {
+        "rw": ["prefix:name", "prefix:name"],
+        "ro": ["prefix:name", "prefix:name"]
+    }
+
+That is, a top-level object with two keys:
+
+``rw``
+    an array of prefixed layer names of layers which should be fully available
+    (both read and write) to this user
+
+``ro``
+    an array of prefixed layer names of layers which should be displayed to this
+    user, but which he/she should not be able to modify
+
+All layers not named in this response will be presumed fully restricted, that
+is, neither modifiable nor visible to the user in question.
+
+Printing with the Mapfish Print Service
+---------------------------------------
+
+The GeoNode map composer can "print" maps to PDF documents using the `Mapfish
+print service <http://www.mapfish.org/doc/print>`_.  The recommended way to run
+this service is by using the printing extension to GeoServer (if you are using
+the pre-built GeoNode package, this extension is already installed for you).
+However, the print service includes restrictions on the servers that can
+provide map tiles for printed maps.  These restrictions have a fairly strict
+default, so you may want to loosen these constraints.
+
+Adding servers by hostname
+..........................
+
+.. highlight:: yaml
+
+The Mapfish printing module is configured through a `YAML <yaml>`_
+configuration file, usually named :file:`print.yaml`.  If you are using the
+GeoServer plugin to run the printing module, this configuration file can be
+found at :file:`{GEOSERVER_DATA_DIR}/printing/config.yaml`.  The default
+configuration should contain an entry like so::
+
+    hosts:
+      - !dnsMatch
+        host: labs.metacarta.com
+        port: 80
+      - !dnsMatch
+        host: terraservice.net
+        port: 80
+
+You can add host/port entries to this list to allow other servers.
+
+.. seealso:: 
+  
+   The `Mapfish documentation
+   <http://www.mapfish.org/doc/print/configuration.html>`_ on configuring the
+   print module.
+
+   The `GeoServer documentation
+   <http://docs.geoserver.org/stable/en/user/community/printing/>`_ on
+   configuring the print module.
+
+
