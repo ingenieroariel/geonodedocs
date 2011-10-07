@@ -17,13 +17,17 @@ or, if you installed by source::
     source path/to/geonode/virtualenv/bin/activate
     django-admin.py createsuperuser --settings=geonode.settings
 
+Once your user is created, you can navigate to your site using the IP address and log in. But don't forget to change the SITEURL as explained in the next step before uploading data.
 
 Configuring the correct DNS or IP address
 -----------------------------------------
 
 By default GeoNode runs in ``http://localhost/``, but when running in production in needs to know the public IP address or the DNS entry.
-To configure it, edit the ``SITEURL`` setting in ``local_settings.py`` (which can be found either in your GeoNodePy/src/geonode folder or in ``/etc/geonode/local_settings.py`` if you used an automated installer.
+To configure it, edit the ``SITEURL`` setting in ``local_settings.py`` (which can be found either in your GeoNodePy/src/geonode folder or in ``/etc/geonode/local_settings.py`` if you used an automated installer, for example::
 
+    SITEURL='http://127.0.0.1/'
+
+.. warning:: Don't forget the trailing slash, because it is used to construct the ``GEOSERVER_BASE_URL`` param.
 
 Sitemaps Configuration
 ----------------------
