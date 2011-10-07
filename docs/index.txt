@@ -43,10 +43,13 @@ Developer Guide
 ===============
 
  * :doc:`Configuring GeoNode in development mode <developers/setup>`
- * :doc:`Testing <developers/testing>`
+ * :doc:`Testing <developers/tests>`
  * :doc:`Architecture Overview <developers/architecture>`
  * :doc:`Extending GeoNode <developers/extend>`
  * :doc:`Contributing to GeoNode <developers/contribute>`
+ * :doc:`Submitting patches <developers/patches>`
+ * :doc:`GeoNode Improvement Proposals - GNIP <developers/gnips>`
+
 
 Getting help
 ============

@@ -22,7 +22,7 @@ Existing Projects using this Methodology
 Pre-requisites
 ==============
 
-* Working GeoNode installation see :doc:`/deployment`. 
+* Working GeoNode installation see :doc:`/intro/install`. 
 * Familiarity with Django and its project layout scheme 
   https://docs.djangoproject.com/en/dev/intro/tutorial01/ 
 
@@ -181,7 +181,7 @@ Setup Steps
 8. *Configure apache to use your own wsgi script:* Once your new wsgi launcher script is
    modified and ready for use, you need to setup apache to use this script instead of the
    original geonode one. Depending on your platform, the file containing the WSGIScriptAlias
-   directive will vary. Please consult the :doc:`/deployment` documentation. This directive
+   directive will vary. Please consult the :doc:`/intro/install` documentation. This directive
    should be modified to point at your newly created wsgi script::
 
      WSGIScriptAlias / "/var/www/<new_project_dir>/wsgi/<new_project_name>.wsgi"
