@@ -27,6 +27,10 @@ To configure it, edit the ``SITEURL`` setting in ``local_settings.py`` (which ca
 
     SITEURL='http://127.0.0.1/'
 
+Once that it is changed you have to re-start the apache server::
+
+    sudo service apache2 restart
+
 .. warning:: Don't forget the trailing slash, because it is used to construct the ``GEOSERVER_BASE_URL`` param.
 
 Sitemaps Configuration
