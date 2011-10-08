@@ -15,8 +15,9 @@ The following documents give an overview to GeoNode, the overview document is ta
 
 .. _the geonode demo site: http://demo.geonode.org
 
-User Tutorials
-==============
+
+For users
+=========
 
 Users are not required to have experience with GIS systems but most power GeoNode users have existings knowledge of tools like ESRI's ArcGIS or qGIS.
 
@@ -29,8 +30,9 @@ The end user documentation is formatted in form of tutorials, this material has 
  * :doc:`Exploring maps <users/explore>`
  * :doc:`Sharing and printing <users/share>`
 
-Administrator Guide
-===================
+
+For Administrators
+==================
 
 Administrators are expected to have some experience with Linux systems but they are not required to be software developers.
 
@@ -39,8 +41,9 @@ Administrators are expected to have some experience with Linux systems but they 
  * :doc:`Customizing look and feel of geonode <deploy/customize>`
  * :doc:`Debugging problems <deploy/debug>`
 
-Developer Guide
-===============
+
+For Developers
+==============
 
  * :doc:`Configuring GeoNode in development mode <developers/setup>`
  * :doc:`Testing <developers/tests>`
@@ -49,7 +52,7 @@ Developer Guide
  * :doc:`Contributing to GeoNode <developers/contribute>`
  * :doc:`Submitting patches <developers/patches>`
  * :doc:`GeoNode Improvement Proposals - GNIP <developers/gnips>`
-
+ * :doc:`Reference documents <developers/reference/index>`
 
 Getting help
 ============
