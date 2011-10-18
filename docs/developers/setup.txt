@@ -81,7 +81,17 @@ Ubuntu
 
 If you are using Ubuntu Linux, you can configure all the above dependencies by running the following comman::
 
-    sudo apt-get install -y --force-yes openjdk-6-jre-headless
+    # openjdk-6-jre-headless fails on paver build
+    # Install add-apt-repository command
+    sudo apt-get install python-software-properties
+    # Add the partner repository which contains the sun jdk
+    sudo add-apt-repository "deb http://archive.canonical.com/ lucid partner"
+    # Update apt to include the new partner packages
+    sudo apt-get update
+    # Accept Sun DLJ license
+    sudo sh -c 'echo sun-java6-jre shared/accepted-sun-dlj-v1-1 select true | /usr/bin/debconf-set-selections';
+    # Install the Sun Java6 JDK
+    sudo apt-get install -yes sun-java6-jdk
     sudo apt-get install -y vim zip unzip subversion git-core binutils build-essential python-dev python-setuptools python-imaging python-reportlab gdal-bin libproj-dev libgeos-dev python-urlgrabber python-scipy python-nose pep8 python-virtualenv python-gdal python-pastescript postgresql-contrib libpq-dev gettext python-psycopg2
     sudo apt-get install -y --force-yes ant maven2 --no-install-recommends
 
